@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my-examples</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <li v-for="post in posts">{{JSON.stringify(post)}}</li>
+    </ul>
+</div>
+
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                posts: []
+            }
+        },
+        created() {
+            fetch('/my-examples/my-api.php/records/posts')
+                .then(resp => resp.json())
+                .then(data => {
+                    this.posts = data.records;
+                });
+        }
+    }).mount('#app');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my-examples</title>
+</head>
+<body>
+
+<div id="app">
+    <pre>output</pre>
+</div>
+<script>
+    fetch('/my-examples/my-api.php/status/ping')
+        .then(resp => resp.json())
+        .then(data => {
+            document.querySelector('#app > pre').textContent = JSON.stringify(data, null, 2);
+        });
+</script>
+
+</body>
+</html>
