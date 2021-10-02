@@ -14,9 +14,18 @@ use Tqdev\PhpCrudApi\ResponseUtils;
 require '../vendor/autoload.php';
 
 class MyHelloController {
-    private RecordService $service;
-    private Responder $responder;
-    private GenericDB $db;
+    /**
+     * @var RecordService
+     */
+    private $service;
+    /**
+     * @var Responder
+     */
+    private $responder;
+    /**
+     * @var GenericDB
+     */
+    private $db;
 
     public function __construct(Router $router, Responder $responder, RecordService $service)
     {
