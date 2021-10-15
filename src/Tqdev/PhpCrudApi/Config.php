@@ -22,6 +22,7 @@ class Config
         'debug' => false,
         'basePath' => '',
         'openApiBase' => '{"info":{"title":"PHP-CRUD-API","version":"1.0.0"}}',
+        'jsonResponderEscapeSlash' => false,
     ];
 
     private function getDefaultDriver(array $values): string
@@ -201,5 +202,10 @@ class Config
     public function getOpenApiBase(): array
     {
         return json_decode($this->values['openApiBase'], true);
+    }
+
+    public function getJsonResponderEscapeSlash(): bool
+    {
+        return $this->values['jsonResponderEscapeSlash'];
     }
 }

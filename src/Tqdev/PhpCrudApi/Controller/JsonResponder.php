@@ -11,10 +11,12 @@ use Tqdev\PhpCrudApi\ResponseUtils;
 class JsonResponder implements Responder
 {
     private $debug;
+    private $escapeSlash;
 
-    public function __construct(bool $debug)
+    public function __construct(bool $debug, bool $escapeSlash)
     {
         $this->debug = $debug;
+        $this->escapeSlash = $escapeSlash;
     }
 
     public function error(int $error, string $argument, $details = null): ResponseInterface
@@ -25,7 +27,7 @@ class JsonResponder implements Responder
 
     public function success($result): ResponseInterface
     {
-        return ResponseFactory::fromObject(ResponseFactory::OK, $result);
+        return ResponseFactory::fromObject(ResponseFactory::OK, $result, $this->escapeSlash);
     }
 
     public function exception($exception): ResponseInterface

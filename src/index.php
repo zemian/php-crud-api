@@ -16,6 +16,7 @@ $config = new Config([
     'username' => 'php-crud-api',
     'password' => 'php-crud-api',
     'database' => 'php-crud-api',
+    // 'jsonResponderEscapeSlash' => true,
     // 'debug' => false
 ]);
 $request = RequestFactory::fromGlobals();

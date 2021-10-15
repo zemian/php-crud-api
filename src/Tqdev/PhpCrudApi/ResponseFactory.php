@@ -34,9 +34,13 @@ class ResponseFactory
         return self::from($status, 'text/html', $html);
     }
 
-    public static function fromObject(int $status, $body): ResponseInterface
+    public static function fromObject(int $status, $body, bool $escapeSlash = false): ResponseInterface
     {
-        $content = json_encode($body, JSON_UNESCAPED_UNICODE);
+        $flags = JSON_UNESCAPED_UNICODE;
+        if ($escapeSlash) {
+            $flags |= JSON_UNESCAPED_SLASHES;
+        }
+        $content = json_encode($body, $flags);
         return self::from($status, 'application/json', $content);
     }
 
