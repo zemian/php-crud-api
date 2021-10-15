@@ -44,20 +44,20 @@ class Config
             case 'sqlite':
                 return 0;
         }
+        throw new \Exception("Config has invalid driver to set default port: '$driver'");
     }
 
     private function getDefaultAddress(string $driver): string
     {
         switch ($driver) {
-            case 'mysql':
-                return 'localhost';
             case 'pgsql':
-                return 'localhost';
+            case 'mysql':
             case 'sqlsrv':
                 return 'localhost';
             case 'sqlite':
                 return 'data.db';
         }
+        throw new \Exception("Config has invalid driver to set default address: '$driver'");
     }
 
     private function getDriverDefaults(string $driver): array
